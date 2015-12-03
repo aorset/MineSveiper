@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Sveip{
 
@@ -23,19 +24,26 @@ public class Sveip{
     }
   }
 
+  private boolean returnBoolean(){
+    Random random = new Random();
+    return random.nextBoolean();
+  }
+
+
   public int sjekkBomber(String koordinater){
     int kolonne = Character.getNumericValue(koordinater.charAt(0))-1;
     int rad = Character.getNumericValue(koordinater.charAt(2))-1;
     if(kolonne >= 4 || rad >= 4){
       return 0;
     }
-    int[][] bomber = {
-      { 0, 1, 0, 1 },
-      { 1, 0, 1, 0 },
-      { 0, 0, 0, 1 },
-      { 1, 0, 0, 0 }
+
+    boolean[][] bomber = {
+      { this.returnBoolean(), this.returnBoolean(), this.returnBoolean(), this.returnBoolean() },
+      { this.returnBoolean(), this.returnBoolean(), this.returnBoolean(), this.returnBoolean() },
+      { this.returnBoolean(), this.returnBoolean(), this.returnBoolean(), this.returnBoolean() },
+      { this.returnBoolean(), this.returnBoolean(), this.returnBoolean(), this.returnBoolean() }
     };
-    if(bomber[rad][kolonne] == 1){
+    if(bomber[rad][kolonne] == true){
       System.out.println("Traff");
       return 1;
     }else{
@@ -51,6 +59,8 @@ public class Sveip{
       { "~", "~", "~", "~" },
       { "~", "~", "~", "~" }
     };
+
+  System.out.println();
   for(int i=0; i < 4; i++){
     int j = 0;
     while(j < 4){
